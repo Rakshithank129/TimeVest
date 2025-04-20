@@ -7,7 +7,7 @@
 👤 User Management
 - User Registration & Login
 - Secure session-based authentication
-
+ 
 ### 📈 Investment Calculator
 - Enter amount & year to calculate future value
 - Simple logic for annual investment growth

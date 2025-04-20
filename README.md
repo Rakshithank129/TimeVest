@@ -2,7 +2,7 @@
 
 **A Django-based web application for managing tasks and tracking investments.**
 
-## 🔧 Features
+## Features
 
 👤 User Management
 - User Registration & Login
@@ -18,13 +18,13 @@
   - Edit/Delete/Review controls
   - Assigned By / Assigned To metadata
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, Bootstrap
 - **Database**: SQLite (default Django DB)
 
-## 🚀 How to Run the Project Locally
+## How to Run the Project Locally
 
 1. **Clone the repo**
    ```bash

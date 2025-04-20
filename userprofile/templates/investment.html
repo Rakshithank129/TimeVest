@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Investment Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+        <h2>Investment result</h2>
+        <table>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>years of Investment</th>
+                <th>Initial amount</th>
+                <th>Final amount</th>
+            </tr>
+            <tr>
+                <td>{{result.name}}</td>
+                <td>{{result.age}}</td>
+                <td>{{result.years_of_investment}}</td>
+                <td>{{result.initial_amount}}</td>
+                <td>{{result.final_amount}}</td>
+            </tr>
+        </table>
+    {% endif %}
+{% endblock %}
+       

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Taskmanagement</h1>
+<form action="{% url 'alltasks' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Add task">
+</form>
+
+<div class="container">
+    <div class="jumbotron">
+        {% if alltasks %}
+        <h1>All tasks Details</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">TaskID</th>
+                <th scope="col">Task Name</th>
+                <th scope="col">Assigned By</th>
+                <th scope="col">Assigned To</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Review</th>
+                <th scope="col">Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for task in alltasks %}
+                    <tr>
+                        <td>{{ task.task_id }}</td>
+                        <td>{{ task.task_name }}</td>
+                        <td>{{ task.Assigned_by }}</td>
+                        <td>{{ task.Assigned_to }}</td>
+                        <td><a href="{% url 'edit' id=task.id %}"><i class='bx bx-edit'></i></a></td>
+                        <td><a href="{% url 'delete' id=task.id %}"><i class='bx bxs-trash'></i></a></td>
+                        <td>{{ task.Review }}</td>
+                        {% if task.priority == 'High' or task.priority == 'high' %}
+                            <td><i class='bx bxs-bell-ring'></i></td>
+                        {% elif task.priority == 'Medium' or task.priority == 'medium' %}
+                            <td><i class='bx bxl-medium-square'></i></td>
+                        {% elif task.priority == 'Low' or task.priority == 'low' %}
+                            <td><i class='bx bxs-sleepy'></i></td>
+                        {% endif %}
+                        
+                    </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+            <h1>No tasks to display</h1>
+        {% endif %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item ">
+                <a class="page-link" href="?pg=1"><<</a>
+              </li>
+              {% if alltasks.has_previous %}
+              <li class="page-item"><a class="page-link" href="?pg={{ alltasks.previous_page_number }}">{{ alltasks.Previous_page_number }}</a></li>
+              {% endif %}
+              <li class="page-item"><a class="page-link" href="?pg={{ alltasks.number }}">{{ alltasks.number }}</a></li>
+              {% if alltasks.has_next %}
+              <li class="page-item"><a class="page-link" href="?pg={{ alltasks.next_page_number }}">{{ alltasks.next_page_number }}</a></li>
+              {% endif %}
+              <li class="page-item">
+                <a class="page-link" href="?pg={{ alltasks.paginator.num_pges }}">>></a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+</div>
+
+{% endblock %}

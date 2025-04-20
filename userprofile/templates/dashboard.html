@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+ <div class="container">
+    <div class="jumbotron">
+        <h1>User profile</h1>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card card-body">
+                    <p>Name : {{ user.username}}</p>
+                    <p>Email :{{ user.email}}</p>
+                    <p>age : {{ user.user_profile.age}} </p>
+                    <p>phone : {{ user.user_profile.phone}}</p>
+                    <p>address : {{ user.user_profile.address}}</p>
+                </div>
+                <br>
+                <form action="{% url 'update' %}"><button type="update" class="btn btn-primary">update</button></form>
+                
+            </div>
+            <!-- <div class="col-md-3">
+                <div class="card card-body">
+                    <img src="{{ user.userimg }}" alt="">
+            
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+ </div>
+{% endblock %}
